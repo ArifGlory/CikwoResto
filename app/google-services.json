@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1095487658112",
+    "firebase_url": "https://lampung-resto.firebaseio.com",
+    "project_id": "lampung-resto",
+    "storage_bucket": "lampung-resto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095487658112:android:f006bb294a03c7c9",
+        "android_client_info": {
+          "package_name": "irwan.lampungresto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095487658112-f2e21q22b3duvkd3aqteuvflhmel3adc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "irwan.lampungresto",
+            "certificate_hash": "ea6e4d451b776339d2b6ce82d3e7bf3bcf25299f"
+          }
+        },
+        {
+          "client_id": "1095487658112-so8avrg8ubpv9refbnkpqcpn1s3e8t6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjhN0ysGdtTxAvLlfD6Bav7p-5tyWqf4A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095487658112-so8avrg8ubpv9refbnkpqcpn1s3e8t6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

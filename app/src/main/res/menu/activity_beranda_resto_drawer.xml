@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_menuResto"
+            android:icon="@drawable/foodmenu"
+            android:title="Menu Makanan" />
+
+        <item
+            android:id="@+id/nav_resepResto"
+            android:icon="@drawable/recipe"
+            android:title="Resep" />
+
+        <item
+            android:id="@+id/nav_profilResto"
+            android:icon="@drawable/home2"
+            android:title="Profil Resto" />
+
+        <item
+            android:id="@+id/nav_pesanan"
+            android:icon="@drawable/pesanan"
+            android:title="Pesanan" />
+
+        <item
+            android:id="@+id/nav_logoutResto"
+            android:title="Logout" />
+
+    </group>
+
+
+</menu>
