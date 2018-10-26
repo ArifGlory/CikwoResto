@@ -11,17 +11,19 @@ public class Resep {
     public String detailResep;
     public String key;
     public String downloadUrl;
+    public String alatBahan;
 
 
     public Resep(){
 
     }
 
-    public Resep(String namaResep, String deskripsi, String key, String downloadUrl,String detailResep) {
+    public Resep(String namaResep, String deskripsi, String key, String downloadUrl,String detailResep,String alatBahan) {
         this.namaResep = namaResep;
         this.deskripsi = deskripsi;
         this.key = key;
         this.downloadUrl = downloadUrl;
         this.detailResep = detailResep;
+        this.alatBahan = alatBahan;
     }
 }

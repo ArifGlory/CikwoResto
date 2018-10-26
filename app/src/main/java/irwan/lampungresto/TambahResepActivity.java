@@ -45,7 +45,7 @@ import irwan.lampungresto.Kelas.SharedVariable;
 public class TambahResepActivity extends AppCompatActivity {
 
     ImageView imgBrowse;
-    EditText etNama,etDeskripsi,etResepnya;
+    EditText etNama,etDeskripsi,etResepnya,etAlatBahan;
     Button btnUpload;
     public static ProgressBar progressBar;
     DatabaseReference ref;
@@ -76,6 +76,7 @@ public class TambahResepActivity extends AppCompatActivity {
         etResepnya = (EditText) findViewById(R.id.etResepnya);
         btnUpload = (Button) findViewById(R.id.signUpBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        etAlatBahan = (EditText) findViewById(R.id.etAlatDanBahan);
 
         imgBrowse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +111,18 @@ public class TambahResepActivity extends AppCompatActivity {
                 return false;
             }
         });
+        etAlatBahan.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.getParent().requestDisallowInterceptTouchEvent(true);
+                switch (motionEvent.getAction() & MotionEvent.ACTION_MASK){
+                    case MotionEvent.ACTION_UP:
+                        view.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +138,7 @@ public class TambahResepActivity extends AppCompatActivity {
         etResepnya.setEnabled(false);
         etNama.setEnabled(false);
         imgBrowse.setEnabled(false);
+        etAlatBahan.setEnabled(false);
     }
 
     private void hidupkanKomponen(){
@@ -133,17 +147,20 @@ public class TambahResepActivity extends AppCompatActivity {
         etResepnya.setEnabled(true);
         etNama.setEnabled(true);
         imgBrowse.setEnabled(true);
+        etAlatBahan.setEnabled(true);
     }
 
     private void checkValidation(){
         String getNama = etNama.getText().toString();
         String getHarga = etDeskripsi.getText().toString();
         String getResepnya = etResepnya.getText().toString();
+        String getAlatBahan = etAlatBahan.getText().toString();
         matikanKomponen();
 
         if (getNama.equals("") || getNama.length() == 0
                 || getHarga.equals("") || getHarga.length() == 0
                 || getResepnya.equals("") || getResepnya.length() == 0
+                || getAlatBahan.equals("") || getAlatBahan.length() == 0
                 ) {
 
             customToast("Semua Field harus diisi");
@@ -241,12 +258,14 @@ public class TambahResepActivity extends AppCompatActivity {
                         etDeskripsi.getText().toString(),
                         key,
                         downloadUrl.toString(),
-                        etResepnya.getText().toString());
+                        etResepnya.getText().toString(),
+                        etAlatBahan.getText().toString());
                 ref.child("resto").child(SharedVariable.userID).child("resepList").child(key).setValue(resep);
 
                 etDeskripsi.setText("");
                 etResepnya.setText("");
                 etNama.setText("");
+                etAlatBahan.setText("");
                 imgBrowse.setImageResource(R.drawable.ic_browse);
             }
         });

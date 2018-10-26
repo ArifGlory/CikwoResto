@@ -38,14 +38,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import irwan.lampungresto.Kelas.FoodMenu;
 import irwan.lampungresto.Kelas.SharedVariable;
@@ -54,11 +59,13 @@ public class DetailMenuActivity extends AppCompatActivity {
 
     ImageView imgBrowse;
     EditText etNama,etHarga;
+    TextView txtRating;
     Button btnUpload,btnKeKomentar;
     public static ProgressBar progressBar;
     DatabaseReference ref;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener fStateListener;
+    public static List<String> listRating = new ArrayList();
 
     static final int RC_PERMISSION_READ_EXTERNAL_STORAGE = 1;
     static final int RC_IMAGE_GALLERY = 2;
@@ -68,6 +75,7 @@ public class DetailMenuActivity extends AppCompatActivity {
     private String namaMenu,hargaMenu,downloadURL,keyMenu;
     Intent i;
     DialogInterface.OnClickListener listener;
+    Double ratingMenu;
 
     FloatingActionButton fabSetting,fabEdit,fabDelete;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
@@ -98,6 +106,7 @@ public class DetailMenuActivity extends AppCompatActivity {
         btnUpload = (Button) findViewById(R.id.signUpBtn);
         btnKeKomentar = (Button) findViewById(R.id.btnKeKomentar);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        txtRating = (TextView) findViewById(R.id.txtRating);
 
         etHarga.setEnabled(false);
         etNama.setEnabled(false);
@@ -189,6 +198,38 @@ public class DetailMenuActivity extends AppCompatActivity {
                 i = new Intent(getApplicationContext(),KomentarActivity.class);
                 i.putExtra("key",keyMenu);
                 startActivity(i);
+            }
+        });
+
+        ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("rating").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    Double ratingGabungan = 0.0;
+
+                    for (DataSnapshot child : dataSnapshot.getChildren()){
+                        String nilai = child.child("nilai").getValue().toString();
+                        listRating.add(nilai);
+                    }
+
+
+                    if (!listRating.isEmpty()){
+                        for (int c=0;c<listRating.size();c++){
+                            Double rate = Double.parseDouble(listRating.get(c).toString());
+                            ratingGabungan = ratingGabungan + rate;
+                        }
+                        ratingMenu = ratingGabungan / Double.parseDouble(String.valueOf(listRating.size()));
+                        txtRating.setText(String.valueOf(ratingMenu));
+                    }else {
+                      ratingMenu =  ratingGabungan;
+                        txtRating.setText(String.valueOf(ratingMenu));
+                    }
+                    progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

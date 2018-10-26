@@ -46,6 +46,7 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
     public static List<String> list_key = new ArrayList();
     public static List<String> list_downloadURL = new ArrayList();
     public static List<String> list_detailResep = new ArrayList();
+    public static List<String> list_alatBahan = new ArrayList();
     String key = "";
     Firebase Vref,refLagi;
     Bitmap bitmap;
@@ -74,6 +75,7 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
                 list_nama.clear();
                 list_key.clear();
                 list_detailResep.clear();
+                list_alatBahan.clear();
 
                 ListResepActivity.progressBar.setVisibility(View.VISIBLE);
                 for (DataSnapshot child : dataSnapshot.getChildren()){
@@ -82,12 +84,14 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
                     String deskripsi = child.child("deskripsi").getValue().toString();
                     String downloadURL = child.child("downloadUrl").getValue().toString();
                     String detail = child.child("detailResep").getValue().toString();
+                    String alatbahan = child.child("alatBahan").getValue().toString();
 
                     list_key.add(key);
                     list_nama.add(namaMenu);
                     list_deskripsi.add(deskripsi);
                     list_downloadURL.add(downloadURL);
                     list_detailResep.add(detail);
+                    list_alatBahan.add(alatbahan);
                 }
                 ListResepActivity.progressBar.setVisibility(View.GONE);
             }
@@ -156,6 +160,7 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
             i.putExtra("url",list_downloadURL.get(position).toString());
             i.putExtra("key",list_key.get(position).toString());
             i.putExtra("detail",list_detailResep.get(position).toString());
+            i.putExtra("alatBahan",list_alatBahan.get(position).toString());
             context.startActivity(i);
 
         }

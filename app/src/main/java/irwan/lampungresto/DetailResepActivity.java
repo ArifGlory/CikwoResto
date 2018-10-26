@@ -52,7 +52,7 @@ import irwan.lampungresto.Kelas.SharedVariable;
 public class DetailResepActivity extends AppCompatActivity {
 
     ImageView imgBrowse;
-    EditText etNama,etDeskripsi,etResepnya;
+    EditText etNama,etDeskripsi,etResepnya,etAlatDanBahan;
     Button btnUpload;
     public static ProgressBar progressBar;
     DatabaseReference ref;
@@ -64,7 +64,7 @@ public class DetailResepActivity extends AppCompatActivity {
     FirebaseUser fbUser;
     Uri uri;
     private Boolean isFabOpen = false;
-    private String namaResep,deskripsiResep,detailResep,downloadURL,keyResep;
+    private String namaResep,deskripsiResep,detailResep,downloadURL,keyResep,alatBahan;
     Intent i;
     DialogInterface.OnClickListener listener;
 
@@ -90,6 +90,7 @@ public class DetailResepActivity extends AppCompatActivity {
         downloadURL = i.getStringExtra("url");
         keyResep = i.getStringExtra("key");
         detailResep = i.getStringExtra("detail");
+        alatBahan = i.getStringExtra("alatBahan");
 
         ref = FirebaseDatabase.getInstance().getReference();
 
@@ -99,11 +100,13 @@ public class DetailResepActivity extends AppCompatActivity {
         btnUpload = (Button) findViewById(R.id.signUpBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         etResepnya = (EditText) findViewById(R.id.etResepnya);
+        etAlatDanBahan = (EditText) findViewById(R.id.etAlatDanBahan);
 
         etDeskripsi.setEnabled(false);
         etNama.setEnabled(false);
         btnUpload.setEnabled(false);
         etResepnya.setEnabled(false);
+        etAlatDanBahan.setEnabled(false);
 
         fabDelete = (FloatingActionButton) findViewById(R.id.fabDelete);
         fabEdit = (FloatingActionButton) findViewById(R.id.fabEdit);
@@ -120,6 +123,7 @@ public class DetailResepActivity extends AppCompatActivity {
                 etNama.setEnabled(true);
                 etDeskripsi.setEnabled(true);
                 etResepnya.setEnabled(true);
+                etAlatDanBahan.setEnabled(true);
                 btnUpload.setText("Ubah");
                 btnUpload.setEnabled(true);
                 imgBrowse.setEnabled(true);
@@ -135,6 +139,7 @@ public class DetailResepActivity extends AppCompatActivity {
         etNama.setText(namaResep);
         etDeskripsi.setText(deskripsiResep);
         etResepnya.setText(detailResep);
+        etAlatDanBahan.setText(alatBahan);
         Glide.with(getApplicationContext())
                 .load(downloadURL)
                 .asBitmap().fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -233,6 +238,7 @@ public class DetailResepActivity extends AppCompatActivity {
         fabSetting.setEnabled(false);
         fabEdit.setEnabled(false);
         fabDelete.setEnabled(false);
+        etAlatDanBahan.setEnabled(false);
     }
 
     private void hidupkanKomponen(){
@@ -244,23 +250,27 @@ public class DetailResepActivity extends AppCompatActivity {
         fabSetting.setEnabled(true);
         fabEdit.setEnabled(true);
         fabDelete.setEnabled(true);
+        etAlatDanBahan.setEnabled(true);
     }
 
     private void checkValidation(){
         String getNama = etNama.getText().toString();
         String getDeskripsi = etDeskripsi.getText().toString();
         String getDetail = etResepnya.getText().toString();
+        String getAlatbahan = etAlatDanBahan.getText().toString();
         // matikanKomponen();
 
         if (getNama.equals("") || getNama.length() == 0
                 || getDeskripsi.equals("") || getDeskripsi.length() == 0
-                || getDetail.equals("") || getDetail.length() == 0) {
+                || getDetail.equals("") || getDetail.length() == 0
+                || getAlatbahan.equals("") || getAlatbahan.length() == 0) {
 
             customToast("Semua Field harus diisi");
             hidupkanKomponen();
         }else if (uri == null){
             //ke proses untuk update tapi tanpa ganti URl Gambar
-            updateWithoutChangeURI(etNama.getText().toString(),etDeskripsi.getText().toString(),etResepnya.getText().toString());
+            updateWithoutChangeURI(etNama.getText().toString(),etDeskripsi.getText().toString(),etResepnya.getText().toString(),
+                    etAlatDanBahan.getText().toString());
         }else {
 
             uploadGambar(uri);
@@ -303,6 +313,7 @@ public class DetailResepActivity extends AppCompatActivity {
                 ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("deskripsi").setValue(etDeskripsi.getText().toString());
                 ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("downloadUrl").setValue(downloadUrl.toString());
                 ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("detailResep").setValue(etResepnya.getText().toString());
+                ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("alatBahan").setValue(etAlatDanBahan.getText().toString());
 
                 customToast("Berhasil Diubah");
                 progressBar.setVisibility(View.GONE);
@@ -315,27 +326,31 @@ public class DetailResepActivity extends AppCompatActivity {
                 etResepnya.setEnabled(false);
                 btnUpload.setEnabled(false);
                 btnUpload.setText("......");
+                etAlatDanBahan.setEnabled(false);
             }
         });
     }
 
-    private void updateWithoutChangeURI(String nama,String deskripsiRes,String detailRes){
+    private void updateWithoutChangeURI(String nama,String deskripsiRes,String detailRes,String alatdanbahan){
         progressBar.setVisibility(View.VISIBLE);
         ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("namaResep").setValue(nama);
         ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("deskripsi").setValue(deskripsiRes);
         ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("detailResep").setValue(detailRes);
+        ref.child("resto").child(SharedVariable.userID).child("resepList").child(keyResep).child("alatBahan").setValue(alatdanbahan);
 
         customToast("Berhasil Diubah");
         progressBar.setVisibility(View.GONE);
         etDeskripsi.setText(deskripsiRes);
         etResepnya.setText(detailRes);
         etNama.setText(nama);
+        etAlatDanBahan.setText(alatdanbahan);
 
         etNama.setEnabled(false);
         etDeskripsi.setEnabled(false);
         etResepnya.setEnabled(false);
         btnUpload.setEnabled(false);
         btnUpload.setText("......");
+        etAlatDanBahan.setEnabled(false);
     }
 
 

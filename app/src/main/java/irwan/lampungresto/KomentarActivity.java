@@ -48,7 +48,7 @@ public class KomentarActivity extends AppCompatActivity {
         txtKomen = (EditText) findViewById(R.id.txtkomentar);
 
         getKey = getIntent().getExtras().getString("key");
-        Toast.makeText(KomentarActivity.this,getKey,Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(KomentarActivity.this,getKey,Toast.LENGTH_SHORT).show();
 
         listView = (ListView) findViewById(R.id.listView);
 

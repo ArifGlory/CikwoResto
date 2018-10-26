@@ -44,6 +44,7 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
     public static List<String> list_harga = new ArrayList();
     public static List<String> list_key = new ArrayList();
     public static List<String> list_downloadURL = new ArrayList();
+    public static List<String> list_rating = new ArrayList();
     String key = "";
     Firebase Vref,refLagi;
     Bitmap bitmap;
@@ -91,6 +92,7 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
 
             }
         });
+
 
     }
 
