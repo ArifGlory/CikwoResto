@@ -67,6 +67,7 @@ public class DetailResepActivity extends AppCompatActivity {
     private String namaResep,deskripsiResep,detailResep,downloadURL,keyResep,alatBahan;
     Intent i;
     DialogInterface.OnClickListener listener;
+    private String uIDResto = "ugsNmb5ix7hgSqNjFgAXUec39zv1";
 
     FloatingActionButton fabSetting,fabEdit,fabDelete;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
@@ -130,6 +131,10 @@ public class DetailResepActivity extends AppCompatActivity {
                 animateFB();
             }
         });
+
+        if (!SharedVariable.userID.equals(uIDResto)){
+            fabSetting.setVisibility(View.GONE);
+        }
 
         fab_open = AnimationUtils.loadAnimation(this,R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(this,R.anim.fab_close);

@@ -68,8 +68,9 @@
             android:name=".ListPesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProfilRestoActivity" />
-        <activity android:name=".DetailPesananActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".DetailPesananActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

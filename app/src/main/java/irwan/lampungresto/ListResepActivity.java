@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import irwan.lampungresto.Adapter.RecycleAdapterListResep;
+import irwan.lampungresto.Kelas.SharedVariable;
 
 public class ListResepActivity extends AppCompatActivity {
 
@@ -42,6 +43,10 @@ public class ListResepActivity extends AppCompatActivity {
         adapter = new RecycleAdapterListResep(this);
         recycler_listResep.setAdapter(adapter);
         recycler_listResep.setLayoutManager(new LinearLayoutManager(this));
+
+        if (!SharedVariable.userID.equals(SharedVariable.uIDCikwo)){
+            btnTambah.setVisibility(View.GONE);
+        }
 
 
     }

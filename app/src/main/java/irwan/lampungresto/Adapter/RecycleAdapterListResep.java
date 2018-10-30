@@ -66,7 +66,7 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
         FirebaseApp.initializeApp(context.getApplicationContext());
         ref = FirebaseDatabase.getInstance().getReference();
 
-        ref.child("resto").child(SharedVariable.userID).child("resepList").addValueEventListener(new ValueEventListener() {
+        ref.child("resto").child(SharedVariable.uIDCikwo).child("resepList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -134,12 +134,11 @@ public class RecycleAdapterListResep extends RecyclerView.Adapter<RecycleViewHol
         holder.txtDeskripsi.setOnClickListener(clicklistener);
         holder.cardlist_item.setOnClickListener(clicklistener);
         holder.txtNamaResep.setOnClickListener(clicklistener);
-        holder.imgRecipe.setOnClickListener(clicklistener);
 
 
         holder.txtNamaResep.setTag(holder);
         holder.txtDeskripsi.setTag(holder);
-        holder.imgRecipe.setTag(holder);
+
         holder.cardlist_item.setTag(holder);
 
 

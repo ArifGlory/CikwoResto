@@ -12,12 +12,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.client.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +45,8 @@ public class DetailPesananActivity extends AppCompatActivity {
     public static String keyPembeli,keyOrder,namaPembeli,phone,status;
     public static TextView txtNamaPembeli,txtPhone,txtStatus;
     RecycleAdapterDetailPesanan adapter;
-    Button btnTerima,btnTolak;
+    Button btnTerima,btnTolak,btnLihatBukti;
+    private String urlBukti;
     DialogInterface.OnClickListener listener;
 
     @Override
@@ -66,6 +71,7 @@ public class DetailPesananActivity extends AppCompatActivity {
         txtNamaPembeli = (TextView) findViewById(R.id.txtNamaPembeli);
         btnTerima = (Button) findViewById(R.id.btnTerima);
         btnTolak = (Button) findViewById(R.id.btnTolak);
+        btnLihatBukti = (Button) findViewById(R.id.btnLihatBukti);
         txtPhone = (TextView) findViewById(R.id.txtPhone);
         txtStatus = (TextView) findViewById(R.id.txtStatus);
         txtNamaPembeli.setText("Pembeli : ");
@@ -168,6 +174,50 @@ public class DetailPesananActivity extends AppCompatActivity {
                     builder.setNegativeButton("Tidak", listener);
                     builder.show();
                 }
+            }
+        });
+
+        ref.child("bukti_bayar").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                progressBar.setVisibility(View.VISIBLE);
+                btnLihatBukti.setEnabled(false);
+                for (DataSnapshot child :  dataSnapshot.getChildren()){
+
+
+                    String key = child.getKey();
+                    if (key.equals(keyOrder)){
+                        urlBukti = child.child("url_bukti").getValue().toString();
+                       // Toast.makeText(getApplicationContext(),"child order : "+key+ " | url : "+urlBukti,Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                progressBar.setVisibility(View.GONE);
+                btnLihatBukti.setEnabled(true);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        btnLihatBukti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater minlfater = LayoutInflater.from(DetailPesananActivity.this);
+                View v = minlfater.inflate(R.layout.dialog_bukti_bayar, null);
+                final android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(DetailPesananActivity.this).create();
+                dialog.setView(v);
+
+                final ImageView headerImage = (ImageView) v.findViewById(R.id.imgBukti);
+                if (urlBukti !=null){
+                    Glide.with(getApplicationContext())
+                            .load(urlBukti)
+                            .asBitmap().fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(headerImage);
+                }
+                dialog.show();
             }
         });
     }

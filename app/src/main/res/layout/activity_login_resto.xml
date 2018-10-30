@@ -103,14 +103,6 @@
                 android:textStyle="bold" />
 
 
-            <TextView android:id="@+id/daftarPenjual"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text=" Belum ada akun Resto ? Yuk Daftar"
-                android:gravity="center"
-                android:textColor="@color/white_greyish"
-                android:textSize="16dip"/>
 
 
             <TextView android:id="@+id/keLoginPembeli"

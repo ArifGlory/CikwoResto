@@ -130,6 +130,18 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bukti Bayar"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btnLihatBukti"
+            android:background="@color/background_color"
+            android:textColor="@color/white_greyish"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

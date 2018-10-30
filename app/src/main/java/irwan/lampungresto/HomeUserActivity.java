@@ -172,6 +172,9 @@ public class HomeUserActivity extends AppCompatActivity
             mUserpref.setBagian("none");
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
+        }else if (id == R.id.nav_resep){
+            i = new Intent(getApplicationContext(),ListResepActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
