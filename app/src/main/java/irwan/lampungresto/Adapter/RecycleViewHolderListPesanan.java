@@ -14,7 +14,7 @@ import irwan.lampungresto.R;
  */
 public class RecycleViewHolderListPesanan extends RecyclerView.ViewHolder {
 
-    public TextView txtNamaMenu,txtHarga,txtTanggal;
+    public TextView txtNamaMenu,txtHarga,txtTanggal,txtStatus;
     public ImageView img_iconlistMotor;
     public CardView cardlist_item;
     public RelativeLayout relaList;
@@ -23,6 +23,7 @@ public class RecycleViewHolderListPesanan extends RecyclerView.ViewHolder {
         super(itemView);
 
         txtNamaMenu = (TextView) itemView.findViewById(R.id.txt_namaMotor);
+        txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
         txtHarga = (TextView) itemView.findViewById(R.id.txt_platNomor);
         txtTanggal = (TextView) itemView.findViewById(R.id.txtTanggalBeli);
         img_iconlistMotor = (ImageView) itemView.findViewById(R.id.img_iconlistMotor);

@@ -32,13 +32,42 @@
         android:visibility="gone"
         android:id="@+id/txtInfo"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/line1"
+        android:layout_below="@+id/txtJudul">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Filter"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            />
+
+        <Spinner
+            android:padding="10dp"
+            android:id="@+id/sp_filter"
+            android:entries="@array/filterPesanan"
+            android:background="@drawable/et_background1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
+    </LinearLayout>
+
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_listlevel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="true"
         android:padding="10dp"
-        android:layout_below="@+id/txtJudul"
+        android:layout_below="@+id/line1"
         android:layout_marginTop="10dp"
         />
 

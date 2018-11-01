@@ -69,9 +69,21 @@
                 android:textSize="14sp" />
 
 
+
+
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:text="status"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/line1"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/secondary_text_default_material_light"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

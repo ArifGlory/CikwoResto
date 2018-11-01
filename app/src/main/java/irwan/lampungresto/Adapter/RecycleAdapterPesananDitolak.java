@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import irwan.lampungresto.DetailPesananActivity;
 import irwan.lampungresto.ListPesananActivity;
 import irwan.lampungresto.R;
@@ -32,7 +31,7 @@ import irwan.lampungresto.R;
 /**
  * Created by Glory on 03/10/2016.
  */
-public class RecycleAdapterListPesanan extends RecyclerView.Adapter<RecycleViewHolderListPesanan> {
+public class RecycleAdapterPesananDitolak extends RecyclerView.Adapter<RecycleViewHolderListPesanan> {
 
 
     LayoutInflater inflater;
@@ -58,7 +57,7 @@ public class RecycleAdapterListPesanan extends RecyclerView.Adapter<RecycleViewH
     String[] nama ={"Beat Hitam","Revo Kuning"};
     String[] plat ={"BE 6390 BQ ","BE 6018 ME"};
 
-    public RecycleAdapterListPesanan(final Context context) {
+    public RecycleAdapterPesananDitolak(final Context context) {
 
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -85,11 +84,14 @@ public class RecycleAdapterListPesanan extends RecyclerView.Adapter<RecycleViewH
                     int index = tanggal.indexOf(" ");
                     String subTanggal = tanggal.substring(0,index);
 
-                    listKeyOrder.add(keyOrder);
-                    listTanggal.add(subTanggal);
-                    listKeyUser.add(uidUser);
-                    listTotalHarga.add(total);
-                    listStatus.add(status);
+                    if (status.equals("3")){
+                        listKeyOrder.add(keyOrder);
+                        listTanggal.add(subTanggal);
+                        listKeyUser.add(uidUser);
+                        listTotalHarga.add(total);
+                        listStatus.add(status);
+                    }
+
                 }
                 ListPesananActivity.progressBar.setVisibility(View.GONE);
             }
@@ -123,7 +125,6 @@ public class RecycleAdapterListPesanan extends RecyclerView.Adapter<RecycleViewH
     public void onBindViewHolder(RecycleViewHolderListPesanan holder, final int position) {
 
         Resources res = context.getResources();
-
         if (listStatus.get(position).toString().equals("1")){
             statusPesanan = "Menunggu Konfirmasi";
         }else if (listStatus.get(position).toString().equals("2")){

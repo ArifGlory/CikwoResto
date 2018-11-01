@@ -184,7 +184,6 @@ public class DetailPesananActivity extends AppCompatActivity {
                 btnLihatBukti.setEnabled(false);
                 for (DataSnapshot child :  dataSnapshot.getChildren()){
 
-
                     String key = child.getKey();
                     if (key.equals(keyOrder)){
                         urlBukti = child.child("url_bukti").getValue().toString();
