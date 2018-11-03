@@ -8,7 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,8 @@ public class KeranjangFragment extends Fragment {
     private ArrayList<String> UrlGambar = new ArrayList<String>();
     private ArrayList<String> Jumlah = new ArrayList<String>();
     private ArrayList<String> keykunci = new ArrayList<String>();
+
+
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -60,6 +65,11 @@ public class KeranjangFragment extends Fragment {
     String keyOrder;
     public static String status = "1";
 
+    int harga_ongkir = 0;
+
+    private Spinner spinner;
+    private static final String[] paths = {"Jakarta", "Semarang", "Kalimantan","Papua","Yogyakarta","Riau","Lampung"};
+    private static final Integer[] valueq = {19000, 29000, 50000,80000,29000,38000,12000};
     public KeranjangFragment() {
         // Required empty public constructor
     }
@@ -152,7 +162,8 @@ public class KeranjangFragment extends Fragment {
                     Map mParent = new HashMap();
                     mParent.put("uid", "" + firebaseAuth.getCurrentUser().getUid());
                     mParent.put("tanggal", "" + waktu);
-                    mParent.put("total", "" + total);
+                    mParent.put("ongkir", "" + harga_ongkir);
+                    mParent.put("total", "" + (total+harga_ongkir));
                     mParent.put("status", "1");
                     keyOrder = refOrder.child("order").push().getKey();
                     refOrder.child("order").child(keyOrder).setValue(mParent);
@@ -161,7 +172,7 @@ public class KeranjangFragment extends Fragment {
                     Map mdetail = new HashMap();
                     mdetail.put("nama_menu", ""+NamaMenu.get(b));
                     mdetail.put("harga",""+HargaMenu.get(b));
-                    mdetail.put("jumlah",""+Jumlah.get(b));
+                    mdetail.put("jumlah",""+(Jumlah.get(b)));
                     mdetail.put("url_gambar",""+UrlGambar.get(b));
                     mdetail.put("id_order",""+keyOrder);
 
@@ -212,6 +223,29 @@ public class KeranjangFragment extends Fragment {
                 });
             }
         });
+
+        spinner = (Spinner)view.findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(),
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                spinner.setEnabled(false);
+                Toast.makeText(view.getContext(),""+valueq[i],Toast.LENGTH_SHORT).show();
+                //total+=valueq[i];
+                harga_ongkir = valueq[i];
+                txt_total.setText("Rp "+getMoney(""+(total+valueq[i]))+",00");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return view;
     }
 

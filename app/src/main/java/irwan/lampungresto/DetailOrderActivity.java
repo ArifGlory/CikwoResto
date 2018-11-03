@@ -37,15 +37,16 @@ import java.util.Map;
 import java.util.Random;
 
 import irwan.lampungresto.Adapter.AdapterKeranjang;
+import irwan.lampungresto.Kelas.SharedVariable;
 
 public class DetailOrderActivity extends AppCompatActivity {
 
     String Faktur;
     Firebase firebase;
-    DatabaseReference refMenu,refOrder,reGambar;
+    DatabaseReference refMenu,refOrder,reGambar,refRek;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener fStateListener;
-    TextView txt_faktur,txt_tanggal,txt_status;
+    TextView txt_faktur,txt_tanggal,txt_status,txt_NoRek;
 
     private ArrayList<String> NamaMenu = new ArrayList<String>();
     private ArrayList<String> HargaMenu = new ArrayList<String>();
@@ -76,6 +77,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         txt_tanggal = (TextView) findViewById(R.id.txt_tanggal);
         txt_status = (TextView) findViewById(R.id.txt_status);
         txt_total = (TextView) findViewById(R.id.txt_total);
+        txt_NoRek = (TextView) findViewById(R.id.txt_NoRek);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         Faktur = getIntent().getExtras().getString("faktur");
@@ -83,6 +85,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         refOrder = FirebaseDatabase.getInstance().getReference();
         refMenu = FirebaseDatabase.getInstance().getReference();
         reGambar = FirebaseDatabase.getInstance().getReference();
+        refRek = FirebaseDatabase.getInstance().getReference();
         refOrder.child("order").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -102,6 +105,19 @@ public class DetailOrderActivity extends AppCompatActivity {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        refRek.child("resto").child(SharedVariable.uIDCikwo).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String noRek = dataSnapshot.child("noRekening").getValue().toString();
+                txt_NoRek.setText(noRek);
             }
 
             @Override

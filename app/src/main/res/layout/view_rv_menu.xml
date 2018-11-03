@@ -15,9 +15,29 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:background="#fff">
+        <LinearLayout
+            android:id="@+id/Lrating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgRating"
+                android:src="@drawable/star"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/txtRt"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:text="Ratting : 5 Bintang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
          <ImageView
+             android:layout_below="@+id/Lrating"
             android:src="@mipmap/ic_launcher"
             android:id="@+id/imageView"
             android:layout_width="fill_parent"

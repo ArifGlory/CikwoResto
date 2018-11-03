@@ -137,6 +137,9 @@ public class HomeRestoActivity extends AppCompatActivity
         }else if (id == R.id.nav_profilResto) {
             i = new Intent(getApplicationContext(),ProfilRestoActivity.class);
             startActivity(i);
+        }else if (id == R.id.nav_rekening) {
+            i = new Intent(getApplicationContext(),RekeningActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

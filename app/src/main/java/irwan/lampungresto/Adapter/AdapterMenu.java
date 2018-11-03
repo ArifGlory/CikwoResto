@@ -118,7 +118,8 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
                     //Toast.makeText(context," Rating "+A, Toast.LENGTH_SHORT).show();
                     totalRating++;
                 }
-                holder.ratingBar.setRating((float) (ratingku/totalRating));
+               // holder.ratingBar.setRating((float) (ratingku/totalRating));
+                holder.Txt_Rating.setText("Rating : "+(int) (ratingku/totalRating));
             }
 
             @Override
@@ -190,6 +191,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Txt_NamaMenu;
+        TextView Txt_Rating;
         TextView Txt_Harga;
         ImageView imageView;
         public CardView cvMain,btnKomentar;
@@ -198,6 +200,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             Txt_NamaMenu = itemView.findViewById(R.id.tv_title);
+            Txt_Rating = itemView.findViewById(R.id.txtRt);
             Txt_Harga = itemView.findViewById(R.id.tvharga);
             cvMain = (CardView) itemView.findViewById(R.id.cv_main);
             btnKomentar = (CardView) itemView.findViewById(R.id.btnKomentar);

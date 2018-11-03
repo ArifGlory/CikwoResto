@@ -16,4 +16,5 @@ public class SharedVariable {
     public static int notifChance = 3;
     public static String check = "0";
     public static String uIDCikwo = "ugsNmb5ix7hgSqNjFgAXUec39zv1";
+    public static String noRekCikwo = "--";
 }

@@ -25,6 +25,10 @@
             android:title="Pesanan" />
 
         <item
+            android:id="@+id/nav_rekening"
+            android:title="Rekening" />
+
+        <item
             android:id="@+id/nav_logoutResto"
             android:title="Logout" />
 

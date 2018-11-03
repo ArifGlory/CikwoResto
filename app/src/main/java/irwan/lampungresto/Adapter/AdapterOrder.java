@@ -45,7 +45,7 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.ViewHolder> 
     public void onBindViewHolder(AdapterOrder.ViewHolder holder, final int position) {
         holder.Txt_Faktur.setText("FAKTUR/"+Faktur.get(position));
         holder.Txt_Tanggal.setText("Tanggal : "+Tanggal.get(position));
-        holder.Txt_Harga.setText("Rp "+getMoney(Total.get(position))+",00-");
+        holder.Txt_Harga.setText(Total.get(position));
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,13 +76,5 @@ public class AdapterOrder extends RecyclerView.Adapter<AdapterOrder.ViewHolder> 
         }
     }
 
-    private String getMoney(String str2) {
-        StringBuilder str = new StringBuilder(str2);
-        int idx = str.length() - 3;
-        while (idx > 0) {
-            str.insert(idx, ".");
-            idx = idx - 3;
-        }
-        return str.toString();
-    }
+
 }

@@ -75,7 +75,7 @@ public class DetailMenuActivity extends AppCompatActivity {
     private String namaMenu,hargaMenu,downloadURL,keyMenu;
     Intent i;
     DialogInterface.OnClickListener listener;
-    Double ratingMenu;
+    int ratingMenu;
 
     FloatingActionButton fabSetting,fabEdit,fabDelete;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
@@ -205,7 +205,7 @@ public class DetailMenuActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                     progressBar.setVisibility(View.VISIBLE);
-                    Double ratingGabungan = 0.0;
+                    int ratingGabungan = 0;
 
                     for (DataSnapshot child : dataSnapshot.getChildren()){
                         String nilai = child.child("nilai").getValue().toString();
@@ -215,10 +215,10 @@ public class DetailMenuActivity extends AppCompatActivity {
 
                     if (!listRating.isEmpty()){
                         for (int c=0;c<listRating.size();c++){
-                            Double rate = Double.parseDouble(listRating.get(c).toString());
+                            int rate = Integer.parseInt(listRating.get(c).toString());
                             ratingGabungan = ratingGabungan + rate;
                         }
-                        ratingMenu = ratingGabungan / Double.parseDouble(String.valueOf(listRating.size()));
+                        ratingMenu = ratingGabungan / Integer.parseInt(String.valueOf(listRating.size()));
                         txtRating.setText(String.valueOf(ratingMenu));
                     }else {
                       ratingMenu =  ratingGabungan;

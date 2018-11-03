@@ -59,7 +59,7 @@ public class OrderFragment extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_order, container, false);
-
+        fAuth = FirebaseAuth.getInstance();
         Firebase.setAndroidContext(view.getContext());
         FirebaseApp.initializeApp(view.getContext());
         ref = FirebaseDatabase.getInstance().getReference();
@@ -83,9 +83,13 @@ public class OrderFragment extends Fragment {
                     Total.clear();
                 }
                 for (DataSnapshot child : dataSnapshot.getChildren()){
-                    Faktur.add(child.getKey());
-                    Tanggal.add(child.child("tanggal").getValue().toString());
-                    Total.add(child.child("total").getValue().toString());
+                    if(child.child("uid").getValue().toString().equals(fAuth.getCurrentUser().getUid())){
+                        Faktur.add(child.getKey());
+                        Tanggal.add(child.child("tanggal").getValue().toString());
+                        Total.add("Harga : Rp."+getMoney(child.child("total").getValue().toString())+"\n Ongkir : Rp. "+getMoney(child.child("ongkir").getValue().toString()));
+
+                    }
+
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -144,6 +148,15 @@ public class OrderFragment extends Fragment {
         });
 
         return view;
+    }
+    private String getMoney(String str2) {
+        StringBuilder str = new StringBuilder(str2);
+        int idx = str.length() - 3;
+        while (idx > 0) {
+            str.insert(idx, ".");
+            idx = idx - 3;
+        }
+        return str.toString();
     }
 
 }

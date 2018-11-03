@@ -71,6 +71,8 @@
         <activity
             android:name=".DetailPesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RekeningActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
