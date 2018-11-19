@@ -31,6 +31,7 @@ public class MenuActivity extends AppCompatActivity {
     private ArrayList<String> HargaMenu= new ArrayList<String>();
     private ArrayList<String> UrlGambar = new ArrayList<String>();
     private ArrayList<String> kunciMenu = new ArrayList<String>();
+    private ArrayList<String> keteranganMenu = new ArrayList<String>();
 
     private ArrayList<String> NamaMenuCari = new ArrayList<String>();
     private ArrayList<String> HargaMenuCari = new ArrayList<String>();
@@ -67,12 +68,16 @@ public class MenuActivity extends AppCompatActivity {
                 if(!kunciMenu.isEmpty()){
                     kunciMenu.clear();
                 }
+                if(!keteranganMenu.isEmpty()){
+                    keteranganMenu.clear();
+                }
 
                 for(DataSnapshot child : dataSnapshot.getChildren()){
                     //Toast.makeText(MenuActivity.this,""+child.child("downloadUrl").getValue().toString(),Toast.LENGTH_SHORT).show();
                     NamaMenu.add(child.child("namaMenu").getValue().toString());
                     HargaMenu.add(child.child("harga").getValue().toString());
                     UrlGambar.add(child.child("downloadUrl").getValue().toString());
+                    keteranganMenu.add(child.child("keterangan").getValue().toString());
                     kunciMenu.add(child.getKey());
                 }
 
@@ -90,53 +95,9 @@ public class MenuActivity extends AppCompatActivity {
         rvView.setHasFixedSize(true);
 
         rvView.setLayoutManager(new GridLayoutManager(MenuActivity.this, 1));
-        adapter = new AdapterMenu(MenuActivity.this,NamaMenu,HargaMenu,UrlGambar,kunciMenu);
+        adapter = new AdapterMenu(MenuActivity.this,NamaMenu,HargaMenu,UrlGambar,kunciMenu,keteranganMenu);
         rvView.setAdapter(adapter);
 
-        final SearchView searchView = (SearchView) findViewById(R.id.svCari);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if(!newText.isEmpty()) {
-                    //Toast.makeText(view.getContext(), "" + newText, Toast.LENGTH_SHORT).show();
-                    if(!NamaMenuCari.isEmpty()){
-                        NamaMenuCari.clear();
-                    }
-                    if(!HargaMenuCari.isEmpty()){
-                        HargaMenuCari.clear();
-                    }
-                    if(!UrlGambarCari.isEmpty()){
-                        UrlGambarCari.clear();
-                    }
-                    if(!kunciMenuCari.isEmpty()){
-                        kunciMenuCari.clear();
-                    }
-
-
-
-                    for(int a =0; a < NamaMenu.size(); a++){
-                        if(NamaMenu.get(a).toLowerCase().contains(newText.toLowerCase())){
-                            //Toast.makeText(view.getContext(), "" + namabarang.get(a).toString(), Toast.LENGTH_SHORT).show();
-                            NamaMenuCari.add(NamaMenu.get(a));
-                            HargaMenuCari.add(HargaMenu.get(a));
-                            UrlGambarCari.add(UrlGambar.get(a));
-                            kunciMenuCari.add(kunciMenu.get(a));
-                        }
-                    }
-                    adapter = new AdapterMenu(MenuActivity.this,NamaMenuCari,HargaMenuCari,UrlGambarCari,kunciMenuCari);
-                    rvView.setAdapter(adapter);
-                }else{
-                    adapter = new AdapterMenu(MenuActivity.this,NamaMenu,HargaMenu,UrlGambar,kunciMenu);
-                    rvView.setAdapter(adapter);
-                }
-                return false;
-            }
-        });
 
     }
 }

@@ -58,7 +58,7 @@ import irwan.lampungresto.Kelas.SharedVariable;
 public class DetailMenuActivity extends AppCompatActivity {
 
     ImageView imgBrowse;
-    EditText etNama,etHarga;
+    EditText etNama,etHarga,etKeterangan;
     TextView txtRating;
     Button btnUpload,btnKeKomentar;
     public static ProgressBar progressBar;
@@ -72,7 +72,7 @@ public class DetailMenuActivity extends AppCompatActivity {
     FirebaseUser fbUser;
     Uri uri;
     private Boolean isFabOpen = false;
-    private String namaMenu,hargaMenu,downloadURL,keyMenu;
+    private String namaMenu,hargaMenu,downloadURL,keyMenu,keterangan;
     Intent i;
     DialogInterface.OnClickListener listener;
     int ratingMenu;
@@ -96,21 +96,24 @@ public class DetailMenuActivity extends AppCompatActivity {
         namaMenu = i.getStringExtra("nama");
         hargaMenu = i.getStringExtra("harga");
         downloadURL = i.getStringExtra("url");
+        keterangan = i.getStringExtra("keterangan");
         keyMenu = i.getStringExtra("key");
 
         ref = FirebaseDatabase.getInstance().getReference();
 
         imgBrowse = (ImageView) findViewById(R.id.img_browse);
         etNama = (EditText) findViewById(R.id.userEmailId);
+        etKeterangan = (EditText) findViewById(R.id.etKeterangan);
         etHarga = (EditText) findViewById(R.id.etHargaSayur);
         btnUpload = (Button) findViewById(R.id.signUpBtn);
         btnKeKomentar = (Button) findViewById(R.id.btnKeKomentar);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        txtRating = (TextView) findViewById(R.id.txtRating);
+
 
         etHarga.setEnabled(false);
         etNama.setEnabled(false);
         btnUpload.setEnabled(false);
+        etKeterangan.setEnabled(false);
 
         fabDelete = (FloatingActionButton) findViewById(R.id.fabDelete);
         fabEdit = (FloatingActionButton) findViewById(R.id.fabEdit);
@@ -129,6 +132,7 @@ public class DetailMenuActivity extends AppCompatActivity {
                 btnUpload.setText("Ubah");
                 btnUpload.setEnabled(true);
                 imgBrowse.setEnabled(true);
+                etKeterangan.setEnabled(true);
                 animateFB();
             }
         });
@@ -139,6 +143,7 @@ public class DetailMenuActivity extends AppCompatActivity {
         rotate_backward = AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
 
         etNama.setText(namaMenu);
+        etKeterangan.setText(keterangan);
         etHarga.setText(hargaMenu);
         Glide.with(getApplicationContext())
                 .load(downloadURL)
@@ -201,37 +206,7 @@ public class DetailMenuActivity extends AppCompatActivity {
             }
         });
 
-        ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("rating").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    int ratingGabungan = 0;
 
-                    for (DataSnapshot child : dataSnapshot.getChildren()){
-                        String nilai = child.child("nilai").getValue().toString();
-                        listRating.add(nilai);
-                    }
-
-
-                    if (!listRating.isEmpty()){
-                        for (int c=0;c<listRating.size();c++){
-                            int rate = Integer.parseInt(listRating.get(c).toString());
-                            ratingGabungan = ratingGabungan + rate;
-                        }
-                        ratingMenu = ratingGabungan / Integer.parseInt(String.valueOf(listRating.size()));
-                        txtRating.setText(String.valueOf(ratingMenu));
-                    }else {
-                      ratingMenu =  ratingGabungan;
-                        txtRating.setText(String.valueOf(ratingMenu));
-                    }
-                    progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 
@@ -292,16 +267,18 @@ public class DetailMenuActivity extends AppCompatActivity {
     private void checkValidation(){
         String getNama = etNama.getText().toString();
         String getHarga = etHarga.getText().toString();
+        String getKeterangan = etKeterangan.getText().toString();
        // matikanKomponen();
 
         if (getNama.equals("") || getNama.length() == 0
-                || getHarga.equals("") || getHarga.length() == 0) {
+                || getHarga.equals("") || getHarga.length() == 0
+                || getKeterangan.equals("") || getKeterangan.length() == 0) {
 
-            customToast("Harga dan Nama menu harus diisi");
+            customToast("Semua field  harus diisi");
             hidupkanKomponen();
         }else if (uri == null){
            //ke proses untuk update tapi tanpa ganti URl Gambar
-            updateWithoutChangeURI(etNama.getText().toString(),etHarga.getText().toString());
+            updateWithoutChangeURI(etNama.getText().toString(),etHarga.getText().toString(),etKeterangan.getText().toString());
         }else {
 
             uploadGambar(uri);
@@ -309,19 +286,22 @@ public class DetailMenuActivity extends AppCompatActivity {
         }
     }
 
-    private void updateWithoutChangeURI(String nama,String harga){
+    private void updateWithoutChangeURI(String nama,String harga,String keterangan){
         progressBar.setVisibility(View.VISIBLE);
         ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("namaMenu").setValue(nama);
         ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("harga").setValue(harga);
+        ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("keterangan").setValue(keterangan);
 
         customToast("Berhasil Diubah");
         progressBar.setVisibility(View.GONE);
         etHarga.setText(harga);
         etNama.setText(nama);
+        etKeterangan.setText(keterangan);
 
         etNama.setEnabled(false);
         etHarga.setEnabled(false);
         btnUpload.setEnabled(false);
+        etKeterangan.setEnabled(false);
     }
 
     private void uploadGambar(final Uri uri){
@@ -353,18 +333,22 @@ public class DetailMenuActivity extends AppCompatActivity {
 
                 String nm = etNama.getText().toString();
                 String harga = etHarga.getText().toString();
+                String ket = etKeterangan.getText().toString();
 
                 ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("namaMenu").setValue(etNama.getText().toString());
                 ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("harga").setValue(etHarga.getText().toString());
                 ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("downloadUrl").setValue(downloadUrl.toString());
+                ref.child("resto").child(SharedVariable.userID).child("menuList").child(keyMenu).child("keterangan").setValue(ket);
 
                 customToast("Berhasil Diubah");
                 progressBar.setVisibility(View.GONE);
                 etHarga.setText(harga);
                 etNama.setText(nm);
+                etKeterangan.setText(ket);
 
                 etNama.setEnabled(false);
                 etHarga.setEnabled(false);
+                etKeterangan.setEnabled(false);
                 btnUpload.setEnabled(false);
                 btnUpload.setText("......");
             }

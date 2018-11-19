@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -51,7 +52,7 @@ public class HomeUserActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private PagerAdapter pagerAdapter;
     private ActionBar actionBar;
-    private String[] tabTitle = {"Profil Resto","Keranjang","Histori Order"};
+    private String[] tabTitle = {"Profil Resto"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class HomeUserActivity extends AppCompatActivity
 
         actionBar = getSupportActionBar();
         actionBar.setTitle(tabTitle[0]);
-        actionBar.setSubtitle("Lampung Resto");
+        actionBar.setSubtitle("Cikwo Resto");
         viewPages.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -107,8 +108,16 @@ public class HomeUserActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPages);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_restaurant_menu_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_shopping_cart_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_history_black_24dp);
+    }
+
+    void goToFragment(Fragment fragment, boolean isTop) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragmen_home, fragment);
+        if (!isTop)
+            fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -126,16 +135,12 @@ public class HomeUserActivity extends AppCompatActivity
             switch (pos) {
                 case 0:
                     return new ProfilFragment();
-                case 1:
-                    return new KeranjangFragment();
-                case 2:
-                    return new OrderFragment();
             }
             return  null;
         }
 
         public int getCount() {
-            return 3;
+            return 1;
         }
 
     }

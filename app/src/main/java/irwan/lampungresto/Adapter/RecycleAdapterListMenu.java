@@ -43,6 +43,7 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
     public static List<String> list_nama = new ArrayList();
     public static List<String> list_harga = new ArrayList();
     public static List<String> list_key = new ArrayList();
+    public static List<String> list_keterangan = new ArrayList();
     public static List<String> list_downloadURL = new ArrayList();
     public static List<String> list_rating = new ArrayList();
     String key = "";
@@ -70,6 +71,7 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
                 list_downloadURL.clear();
                 list_harga.clear();
                 list_nama.clear();
+                list_keterangan.clear();
                 list_key.clear();
 
                 FragmentHomeResto.progressBar.setVisibility(View.VISIBLE);
@@ -77,12 +79,14 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
                     String key = child.getKey();
                     String namaMenu = child.child("namaMenu").getValue().toString();
                     String harga = child.child("harga").getValue().toString();
+                    String keterangan = child.child("keterangan").getValue().toString();
                     String downloadURL = child.child("downloadUrl").getValue().toString();
 
                     list_key.add(key);
                     list_nama.add(namaMenu);
                     list_harga.add(harga);
                     list_downloadURL.add(downloadURL);
+                    list_keterangan.add(keterangan);
                 }
                 FragmentHomeResto.progressBar.setVisibility(View.GONE);
             }
@@ -159,12 +163,12 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
         holder.cardlist_item.setOnClickListener(clicklistener);
         holder.txtNamaMenu.setOnClickListener(clicklistener);
         holder.relaList.setOnClickListener(clicklistener);
-        holder.img_iconlistMotor.setOnClickListener(clicklistener);
+        //holder.img_iconlistMotor.setOnClickListener(clicklistener);
 
 
         holder.txtNamaMenu.setTag(holder);
         holder.txtHarga.setTag(holder);
-        holder.img_iconlistMotor.setTag(holder);
+      //  holder.img_iconlistMotor.setTag(holder);
         holder.relaList.setTag(holder);
 
 
@@ -181,6 +185,7 @@ public class RecycleAdapterListMenu extends RecyclerView.Adapter<RecycleViewHold
             i = new Intent(context.getApplicationContext(), DetailMenuActivity.class);
             i.putExtra("nama",list_nama.get(position).toString());
             i.putExtra("harga",list_harga.get(position).toString());
+            i.putExtra("keterangan",list_keterangan.get(position).toString());
             i.putExtra("url",list_downloadURL.get(position).toString());
             i.putExtra("key",list_key.get(position).toString());
             context.startActivity(i);

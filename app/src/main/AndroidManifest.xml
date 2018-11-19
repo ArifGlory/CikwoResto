@@ -58,7 +58,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeRestoActivity"
-            android:label="@string/title_activity_home_resto"
+            android:label="Cikwo Resto"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeUserActivity"

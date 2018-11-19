@@ -193,7 +193,6 @@ public class KeranjangFragment extends Fragment {
                                 //Toast.makeText(view.getContext(),"UID : "+child.getKey().toString(),Toast.LENGTH_SHORT).show();
                                 //keykunci.add(child.getKey().toString());
                                 refKeranjang.child("keranjang").child(child.getKey().toString()).setValue(null);
-
                             }
                             total = 0;
                         }

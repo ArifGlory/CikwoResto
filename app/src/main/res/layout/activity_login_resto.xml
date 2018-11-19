@@ -16,7 +16,7 @@
             android:padding="15dp">
 
             <ImageView
-                android:src="@drawable/logo_lampungresto"
+                android:src="@drawable/logo_cikwo"
                 android:layout_width="wrap_content"
                 android:layout_height="122dp"
                 android:layout_marginBottom="4dp"
@@ -32,12 +32,20 @@
                 android:textSize="16dip" />
 
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Cikwo Resto"
+                android:textColor="@color/white_greyish"
+                android:textSize="16dip" />
+
+            <TextView
                 android:id="@+id/txtSLogan"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:text="Cikwo Resto"
+                android:text="Restoran makanan khas lampung"
                 android:textColor="@color/white_greyish"
                 android:textSize="16dip" />
 

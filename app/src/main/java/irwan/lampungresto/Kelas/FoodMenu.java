@@ -9,16 +9,18 @@ public class FoodMenu {
     public String namaMenu;
     public String harga;
     public String key;
+    public String keterangan;
     public String downloadUrl;
 
     public FoodMenu(){
 
     }
 
-    public FoodMenu(String namaMenu, String harga, String key, String downloadUrl) {
+    public FoodMenu(String namaMenu, String harga, String key, String downloadUrl,String keterangan) {
         this.namaMenu = namaMenu;
         this.harga = harga;
         this.key = key;
         this.downloadUrl = downloadUrl;
+        this.keterangan = keterangan;
     }
 }

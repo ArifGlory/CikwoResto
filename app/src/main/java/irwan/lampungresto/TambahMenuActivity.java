@@ -43,7 +43,7 @@ import irwan.lampungresto.Kelas.SharedVariable;
 public class TambahMenuActivity extends AppCompatActivity {
 
     ImageView imgBrowse;
-    EditText etNama,etHarga;
+    EditText etNama,etHarga,etKeterangan;
     Button btnUpload;
     public static ProgressBar progressBar;
     DatabaseReference ref;
@@ -72,6 +72,7 @@ public class TambahMenuActivity extends AppCompatActivity {
         etNama = (EditText) findViewById(R.id.userEmailId);
         etHarga = (EditText) findViewById(R.id.etHargaSayur);
         btnUpload = (Button) findViewById(R.id.signUpBtn);
+        etKeterangan = (EditText) findViewById(R.id.etKeterangan);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         imgBrowse.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +109,7 @@ public class TambahMenuActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         etHarga.setEnabled(false);
         etNama.setEnabled(false);
+        etKeterangan.setEnabled(false);
         imgBrowse.setEnabled(false);
     }
 
@@ -115,16 +117,19 @@ public class TambahMenuActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         etHarga.setEnabled(true);
         etNama.setEnabled(true);
+        etKeterangan.setEnabled(true);
         imgBrowse.setEnabled(true);
     }
 
     private void checkValidation(){
         String getNama = etNama.getText().toString();
         String getHarga = etHarga.getText().toString();
+        String getKeterangan = etKeterangan.getText().toString();
         matikanKomponen();
 
         if (getNama.equals("") || getNama.length() == 0
-                || getHarga.equals("") || getHarga.length() == 0) {
+                || getHarga.equals("") || getHarga.length() == 0
+                || getKeterangan.equals("") || getKeterangan.length() == 0) {
 
             customToast("Harga dan Nama menu harus diisi");
             hidupkanKomponen();
@@ -219,11 +224,13 @@ public class TambahMenuActivity extends AppCompatActivity {
                 FoodMenu foodMenu = new FoodMenu(etNama.getText().toString(),
                         etHarga.getText().toString(),
                         key,
-                        downloadUrl.toString());
+                        downloadUrl.toString(),
+                        etKeterangan.getText().toString());
                 ref.child("resto").child(SharedVariable.userID).child("menuList").child(key).setValue(foodMenu);
 
                 etHarga.setText("");
                 etNama.setText("");
+                etKeterangan.setText("");
                 imgBrowse.setImageResource(R.drawable.ic_browse);
             }
         });

@@ -48,17 +48,20 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
     private ArrayList<String> HargaMenu;
     private ArrayList<String> UrlGambar;
     private ArrayList<String> KunciMenu;
+    private ArrayList<String> KeteranganMenu;
 
     DatabaseReference ref,ref2;
     Context context;
     private TextView resultText;
     Double ratingku = 0.0;
     int totalRating = 0;
-    public AdapterMenu(Context contxt,ArrayList<String> Nama,ArrayList<String> Harga,ArrayList<String> urlG, ArrayList<String> KeyRes){
+    public AdapterMenu(Context contxt,ArrayList<String> Nama,ArrayList<String> Harga,ArrayList<String> urlG, ArrayList<String> KeyRes,
+                       ArrayList<String> Keterangan){
         NamaMenu = Nama;
         HargaMenu = Harga;
         UrlGambar = urlG;
         KunciMenu = KeyRes;
+        KeteranganMenu = Keterangan;
         context = contxt;
     }
 
@@ -75,6 +78,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
                 .load(UrlGambar.get(position))
                 .into(holder.imageView);
         holder.Txt_NamaMenu.setText(NamaMenu.get(position));
+        holder.Txt_Keterangan.setText(KeteranganMenu.get(position));
         holder.Txt_Harga.setText("Rp "+getMoney(HargaMenu.get(position))+",-");
         holder.btnKomentar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +94,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
 //                Toast.makeText(context,""+KunciMenu.get(position),Toast.LENGTH_SHORT).show();
 //                FirebaseDatabase database = FirebaseDatabase.getInstance();
 //                final DatabaseReference myFirebaseRef = database.getReference(KunciMenu.get(position));
-                showInputDialog(MenuActivity.resto_id,KunciMenu.get(position));
+              //  showInputDialog(MenuActivity.resto_id,KunciMenu.get(position));
             }
         });
 //        holder.ratingBar.setOnTouchListener(new View.OnTouchListener() {
@@ -119,7 +123,6 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
                     totalRating++;
                 }
                // holder.ratingBar.setRating((float) (ratingku/totalRating));
-                holder.Txt_Rating.setText("Rating : "+(int) (ratingku/totalRating));
             }
 
             @Override
@@ -128,17 +131,8 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
             }
         });
 
-        holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                ref = database.getReference("resto/ugsNmb5ix7hgSqNjFgAXUec39zv1/menuList/"+KunciMenu.get(position));
-                ref.child("rating").child(firebaseAuth.getCurrentUser().getUid()).child("nilai").setValue(""+holder.ratingBar.getRating());
-                //Toast.makeText(context," Rating "+holder.ratingBar.getRating(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
+
     protected void showInputDialog(final String id_resto, final String id_menu) {
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -191,20 +185,17 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Txt_NamaMenu;
-        TextView Txt_Rating;
-        TextView Txt_Harga;
+        TextView Txt_Harga,Txt_Keterangan;
         ImageView imageView;
         public CardView cvMain,btnKomentar;
-        public RatingBar ratingBar;
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             Txt_NamaMenu = itemView.findViewById(R.id.tv_title);
-            Txt_Rating = itemView.findViewById(R.id.txtRt);
             Txt_Harga = itemView.findViewById(R.id.tvharga);
+            Txt_Keterangan = itemView.findViewById(R.id.tv_keterangan);
             cvMain = (CardView) itemView.findViewById(R.id.cv_main);
             btnKomentar = (CardView) itemView.findViewById(R.id.btnKomentar);
-            ratingBar = itemView.findViewById(R.id.rating);
         }
     }
 

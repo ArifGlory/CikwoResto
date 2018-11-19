@@ -130,15 +130,8 @@ public class HomeRestoActivity extends AppCompatActivity
 
             i = new Intent(getApplicationContext(),ListResepActivity.class);
             startActivity(i);
-        }else if (id == R.id.nav_pesanan) {
-            i = new Intent(getApplicationContext(),ListPesananActivity.class);
-            startActivity(i);
-
         }else if (id == R.id.nav_profilResto) {
             i = new Intent(getApplicationContext(),ProfilRestoActivity.class);
-            startActivity(i);
-        }else if (id == R.id.nav_rekening) {
-            i = new Intent(getApplicationContext(),RekeningActivity.class);
             startActivity(i);
         }
 

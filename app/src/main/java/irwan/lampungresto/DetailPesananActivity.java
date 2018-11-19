@@ -149,7 +149,7 @@ public class DetailPesananActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!status.equals("3")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailPesananActivity.this);
-                    builder.setMessage("Terima Order ini?");
+                    builder.setMessage("Tolak Order ini?");
                     builder.setCancelable(false);
 
                     listener = new DialogInterface.OnClickListener()

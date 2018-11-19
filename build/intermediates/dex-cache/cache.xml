@@ -2,139 +2,31 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\bb563f124e21221dcc524f90f8f7138a0ef6c707\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="E:\Project\LampungResto - V2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.3"
-        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_59ebd06feae73406bec840f2ecd5da8591a58620.jar" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_d76b0816954474c7c545e9f5bf6644d984e477c0\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\27e9d4da4793f1e68869e3fa8a0448cf40fde751\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_0de2e4ccb817fea1dfff2c29fb8a99ad9adf8e45.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\b7225e8022d51fd0b083e148ed89818a946c2c24\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="c5d103b270b3f3b50d8e6b44aa8e068b0de33426">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_3c47e01e0107a6a3698da948c69b23da349d0616.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\AppData\Local\Android\sdk\extras\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.0_2bb77c757c8719de24db3dc5b5403ff203410344.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\cae2de63f2dde03b9bbe0693269a80e82eb7a69f\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_64cc7a1b5e94d1c63fd5b7fe65335995a94be0fa.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\056694922a7b7cc69bad40c6c5fb8a256e2df065\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_db1be7f5d79961f225948dcfa7fb9b5c15beced0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\afb5bd58e641b374b0a69d273f43b107e9446dfb\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_317725c3e6fed3934e2278c509a848561f82b6c4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\8410100eaceb35f0ac54541785dff37c7c6154fd\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_30aa9fe099a8b6944dc25e8ce580d3d7979e8df9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\b8680d280e507e7651a3e0e95870150119e8d65c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_592ec68042cbfae4c415389b71a6143a87707c11.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\56efe7b45ded34ac62d4603132eaa4b5f5f1578d\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_4d9842c825000b29b438cab1a061cbdae599c26d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\eb04de137d5c304919a1689c94625efff5241d91\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_42d3393ac7fe4dafa283fbae51433fac5affbc6e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\8b84452b8d16c79b8bcb92a7be42aabe35b2f066\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_b6f0480d00f8eef9bf758e84c03890228a08155b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\f3017c516ef3ba5256e741882de829e07e3d76cf\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Glory\.android\build-cache\e176466e5b99cab9d12788aecab25a3851187bc4\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.3"
         sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_9c30ea82644972235e03a20138fd5d12c0a1d663.jar" />
+        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1e8644ed83d730a3809ab33b768f325e45ba8cf6\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\d88e5801fc6a5c17a6be6370c1d71c08410b8d3d\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="E:\Project\LampungResto - V2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.3"
-        sha1="518768f3200963fbfec652f498da2c9d39245234">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_79c08158bb9b7f7479c8edfd037522fb2c0c9cb2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Glory\.android\build-cache\f438d97547ee8f62120795dad3ab0da556404e82\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.3"
-        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
-        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\pre-dexed\debug\classes_41fb3cea3ab512740835362eb29029ce73835aff.jar" />
+        sha1="b873b139e688ad7fbc0e5473912029d70fc511f7">
+        <dex dex="E:\Project\LampungResto - V2\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b373e5fc61be8428a8d2615d7dd55c414264c29b\classes.dex" />
     </item>
 
 </items>

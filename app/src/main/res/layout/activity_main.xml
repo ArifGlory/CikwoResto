@@ -16,7 +16,7 @@
             android:padding="15dp">
 
             <ImageView
-                android:src="@drawable/logo_lampungresto"
+                android:src="@drawable/logo_cikwo"
                 android:layout_width="wrap_content"
                 android:layout_height="122dp"
                 android:id="@+id/imgIcon"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:text="Your Satisfaction is our Pleasure"
+                android:text="Restoran makanan khas lampung"
                 android:textColor="@color/white_greyish"
                 android:textSize="16dip" />
 

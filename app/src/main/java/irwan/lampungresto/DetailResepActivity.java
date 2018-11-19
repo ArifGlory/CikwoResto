@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -27,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +73,7 @@ public class DetailResepActivity extends AppCompatActivity {
 
     FloatingActionButton fabSetting,fabEdit,fabDelete;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+    ScrollView svResep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +105,36 @@ public class DetailResepActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         etResepnya = (EditText) findViewById(R.id.etResepnya);
         etAlatDanBahan = (EditText) findViewById(R.id.etAlatDanBahan);
+        svResep = (ScrollView) findViewById(R.id.svResep);
 
         etDeskripsi.setEnabled(false);
         etNama.setEnabled(false);
         btnUpload.setEnabled(false);
-        etResepnya.setEnabled(false);
-        etAlatDanBahan.setEnabled(false);
+        etResepnya.setEnabled(true);
+        etAlatDanBahan.setEnabled(true);
+
+        etAlatDanBahan.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP)
+                    svResep.requestDisallowInterceptTouchEvent(false);
+                else
+                    svResep.requestDisallowInterceptTouchEvent(true);
+
+                return false;
+            }
+        });
+        etResepnya.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP)
+                    svResep.requestDisallowInterceptTouchEvent(false);
+                else
+                    svResep.requestDisallowInterceptTouchEvent(true);
+
+                return false;
+            }
+        });
 
         fabDelete = (FloatingActionButton) findViewById(R.id.fabDelete);
         fabEdit = (FloatingActionButton) findViewById(R.id.fabEdit);
